@@ -1,7 +1,9 @@
+package Game;
+
 public class Figur {
     private int Feld = 0;
 
-    public Figur(int aktuellesFeld) {
+    Figur(int aktuellesFeld) {
         this.Feld = aktuellesFeld;
     }
 

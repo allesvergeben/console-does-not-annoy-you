@@ -3,7 +3,7 @@ package UserInputs;
 import java.util.Scanner;
 
 public class DoubleInput {
-    private double UserInputDouble;
+    private double userInputDouble;
 
     public DoubleInput(String message, double von, double bis) {
         Scanner inputScanner = new Scanner(System.in);
@@ -36,6 +36,7 @@ public class DoubleInput {
     private static double inputhandler(String p_message, Scanner p_scanner, double p_von, double p_bis) {
         double input;
 
+
         System.out.println(p_message);
 
         //Double.isNaN checkt ob bei parseDouble ein Fehler aufgetreten ist und wiederholt sonst die Frage nach der Zahl bis der Nutzer eine valide Zahl eingegeben hat
@@ -48,10 +49,10 @@ public class DoubleInput {
     }
 
     private void set(double p_input) {
-        UserInputDouble = p_input;
+        userInputDouble = p_input;
     }
 
     public Double get() {
-        return UserInputDouble;
+        return userInputDouble;
     }
 }

@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class IntInput {
     private int UserInputInt;
 
-    public IntInput(String message, double von, double bis) {
+    public IntInput(String message, int von, int bis) {
         Scanner inputScanner = new Scanner(System.in);
         set(inputhandler(message, inputScanner, von, bis));
     }
 
-    private static int parseInt(String p_validate, double p_von, double p_bis) {
+    private static int parseInt(String p_validate, int p_von, int p_bis) {
         //Checkt ob der Input eine Zahl ist die dem Schema ±xxxxx... entspricht
         int p_validate_int;
         try {
@@ -34,7 +34,7 @@ public class IntInput {
         }
     }
 
-    private static int inputhandler(String p_message, Scanner p_scanner, double p_von, double p_bis) {
+    private static int inputhandler(String p_message, Scanner p_scanner, int p_von, int p_bis) {
         int input;
         System.out.println(p_message);
         //parseInt(p_scanner.nextLine()) == -1 heißt error
