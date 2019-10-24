@@ -6,9 +6,14 @@ public class StringInput {
     private Scanner inputScanner = new Scanner(System.in);
     private String userInputString;
 
-    public StringInput(String message, int length) {
-        System.out.println(message);
-        set(inputScanner.nextLine(), length);
+    public StringInput(String message, int length, boolean command) {
+        if (command) {
+            System.out.println(message);
+            checkCommands(inputScanner.nextLine());
+        } else {
+            System.out.println(message);
+            set(inputScanner.nextLine(), length);
+        }
     }
 
     private void set(String p_input, int p_length) {
@@ -20,6 +25,19 @@ public class StringInput {
         }
     }
 
+    private void checkCommands(String p_input) {
+        switch (p_input.toUpperCase()) {
+            case "!HELP":
+                userInputString = "!help wurde eigegeben";
+                break;
+            case "!LOST":
+                userInputString = "u are lost kappa";
+                break;
+            default:
+                System.out.println("Dieser Befehl wurde nicht gefunden! Für eine Liste an befehlen, gib !help ein.");
+                checkCommands(inputScanner.nextLine());
+        }
+    }
     public String get() {
         return userInputString;
     }
