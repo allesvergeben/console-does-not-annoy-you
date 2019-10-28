@@ -5,12 +5,15 @@ import UserInputs.StringInput;
 
 import java.util.ArrayList;
 
+
 public class Spiel {
     private static ArrayList<Spieler> player;
     private static int playercount;
+    private static boolean gameruns = true;
 
     public static void main(String[] args) {
         createPlayers();
+        //main(); //token ring system
         //System.out.println(new StringInput("Test: ", 15, true).get());
         //for (int i = 0; i <100; i++) System.out.println(new Wurfel().get());
         //System.out.println(new DoubleInput("Input a Double",1,10).get());
@@ -25,16 +28,31 @@ public class Spiel {
         setPlayers(Spieler);
     }
 
+    private static void main() {
+        while (gameruns) {
+            for (Spieler spieler : player) {
+                spieler.move();
+            }
+        }
+    }
+
     int getPlayercount() {
         return playercount;
     }
 
+    void stopGame() {
+        gameruns = false;
+    }
     ArrayList<Spieler> getPlayers() {
         return player;
     }
 
     private static void setPlayers(ArrayList<Spieler> p_spieler) {
         player = p_spieler;
+    }
+
+    String getNameById(int id) {
+        return player.get(id).getName();
     }
 
 }
