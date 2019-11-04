@@ -13,7 +13,9 @@ public class Spiel {
 
     public static void main(String[] args) {
         createPlayers();
-        //main(); //token ring system
+        Spielfeld.setHome();
+        Spielfeld.setWin();
+        main(); //token ring system
         //System.out.println(new StringInput("Test: ", 15, true).get());
         //for (int i = 0; i <100; i++) System.out.println(new Wurfel().get());
         //System.out.println(new DoubleInput("Input a Double",1,10).get());
@@ -23,7 +25,7 @@ public class Spiel {
         ArrayList<Spieler> Spieler = new ArrayList<>();
         playercount = new IntInput("Zu wie vielt soll gespielt werden", 2, 4).get();
         for (int i = 1; i <= playercount; i++) {
-            Spieler.add(new Spieler(new StringInput("Bitte gib den Name des " + i + ". Spielers an.", 15, false).get()));
+            Spieler.add(new Spieler(new StringInput("Bitte gib den Name des " + i + ". Spielers an.", 15, false).get(), i));
         }
         setPlayers(Spieler);
     }
@@ -31,7 +33,8 @@ public class Spiel {
     private static void main() {
         while (gameruns) {
             for (Spieler spieler : player) {
-                spieler.move();
+                System.out.println(spieler.getName() + " ist jetzt dran.");
+                spieler.move(false);
             }
         }
     }
@@ -53,6 +56,10 @@ public class Spiel {
 
     String getNameById(int id) {
         return player.get(id).getName();
+    }
+
+    static Spieler getPlayer(int index) {
+        return player.get(index);
     }
 
 }

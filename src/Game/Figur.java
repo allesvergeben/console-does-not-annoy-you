@@ -1,14 +1,23 @@
 package Game;
 
-public class Figur {
+class Figur {
     private int Feld = 0;
+    private int ID = 0;
 
-    Figur(int aktuellesFeld) {
+    Figur(int aktuellesFeld, int ID) {
         this.Feld = aktuellesFeld;
+        this.ID = ID;
     }
 
-    public int getFeld() {
+    int getFeld() {
         return Feld;
     }
 
+    void setFeld(int p_Feld) {
+        this.Feld = p_Feld;
+    }
+
+    int getID() {
+        return ID;
+    }
 }
