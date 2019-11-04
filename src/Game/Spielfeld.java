@@ -49,25 +49,19 @@ public class Spielfeld extends Spiel {
         return start[p_spieler];
     }
 
-    public void setWinspot(int p_spieler) {
-        winspot.get(p_spieler).set(winspot.get(p_spieler).size(), true);
-        if (winspot.get(p_spieler).size() == 4) {
-            stopGame();
-            System.out.println("Spieler " + getNameById(p_spieler) + " hat gewonnen");
-        }
-    }
-
     static boolean setFeld(int p_Spieler, int p_Wurf, int p_FigurID) {
         int Feld = p_Wurf + getPlayer(p_Spieler - 1).getFigures().get(p_FigurID).getFeld();
-        if (Feld > 40) {
-            Feld = Feld - 39;
+        if (Feld >= 40) {
+            Feld = Feld - 39; // not tested
+            getPlayer(p_Spieler - 1).getFigures().get(p_FigurID).setRound(true);
+
         }
         if (Spielfeld[Feld][0] == p_Spieler) {
             System.out.println("Hier ist bereits eine Figur von dir");
             return false;
         } else if (Spielfeld[Feld][0] != p_Spieler && Spielfeld[Feld][0] != 0) {
             //Figur löschen (scheißen)
-            getPlayer(Spielfeld[Feld][0] - 1).getFigures().remove(Spielfeld[Feld][1]); //LOST!
+            getPlayer(Spielfeld[Feld][0] - 1).getFigures().remove(Spielfeld[Feld][1]); //GEWORFEN!
             //Spielfeld wo die figur vorher drauf war leeren
             switchFig(p_Spieler - 1, p_FigurID, Feld);
         } else {
@@ -81,9 +75,14 @@ public class Spielfeld extends Spiel {
         Spielfeld[getPlayer(p_Spieler).getFigures().get(p_FigurID).getFeld()][0] = 0;
         Spielfeld[getPlayer(p_Spieler).getFigures().get(p_FigurID).getFeld()][1] = 0;
         //Figur Feld Aktualisieren
-        if (getWin(p_Spieler) > p_Feld) {
+        if (getWin(p_Spieler) > p_Feld && p_Spieler == 0) { // Für Spieler 1
+            //entsacken!
             getPlayer(p_Spieler).getFigures().remove(p_FigurID);
-            winspot.get(p_Spieler - 1).add(true);
+            setWinspot(p_Spieler);
+        } else if (getPlayer(p_Spieler).getFigures().get(p_FigurID).getRound() && getWin(p_Spieler) < p_Feld && p_Spieler != 0) {
+            //entsacken!
+            getPlayer(p_Spieler).getFigures().remove(p_FigurID);
+            setWinspot(p_Spieler);
         } else {
             getPlayer(p_Spieler).getFigures().get(p_FigurID).setFeld(p_Feld);
             //Figur auf das Spielfeld setzen
@@ -92,5 +91,16 @@ public class Spielfeld extends Spiel {
         }
     }
 
+    static ArrayList<ArrayList<Boolean>> getWinspot() {
+        return winspot;
+    }
+
+    public static void setWinspot(int p_spieler) {
+        winspot.get(p_spieler).add(true);
+        if (winspot.get(p_spieler).size() == 4) {
+            stopGame();
+            System.out.println("Spieler " + getStaticNameById(p_spieler) + " hat gewonnen");
+        }
+    }
 }
 

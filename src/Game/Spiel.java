@@ -15,6 +15,7 @@ public class Spiel {
         createPlayers();
         Spielfeld.setHome();
         Spielfeld.setWin();
+        setWinspots();
         main(); //token ring system
         //System.out.println(new StringInput("Test: ", 15, true).get());
         //for (int i = 0; i <100; i++) System.out.println(new Wurfel().get());
@@ -43,9 +44,10 @@ public class Spiel {
         return playercount;
     }
 
-    void stopGame() {
+    static void stopGame() {
         gameruns = false;
     }
+
     ArrayList<Spieler> getPlayers() {
         return player;
     }
@@ -58,8 +60,17 @@ public class Spiel {
         return player.get(id).getName();
     }
 
+    static String getStaticNameById(int id) {
+        return player.get(id).getName();
+    }
     static Spieler getPlayer(int index) {
         return player.get(index);
     }
 
+    private static void setWinspots() {
+        ArrayList<Boolean> winlist = new ArrayList<>();
+        for (int i = 0; i < playercount; i++) {
+            Spielfeld.getWinspot().add(i, winlist);
+        }
+    }
 }
