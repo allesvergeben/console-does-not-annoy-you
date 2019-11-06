@@ -1,10 +1,11 @@
 package Game;
 
+import Graphics.Display;
 import UserInputs.IntInput;
 
 import java.util.ArrayList;
 
-class Spieler {
+public class Spieler {
     /*
 - colors: Color[]
      */
@@ -32,7 +33,7 @@ class Spieler {
                     w = new Wurfel().get();
                     outputWurf(w);
                     if (w == 6) {
-                        figures.add(new Figur(Spielfeld.getHome(id), figures.size()));
+                        figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
                         i = 4;
                         move(true);
                     }
@@ -44,7 +45,7 @@ class Spieler {
                     if (figures.size() == 4) {
                         askedmove(w);
                     } else {
-                        figures.add(new Figur(Spielfeld.getHome(id), figures.size()));
+                        figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
                         move(true);
                     }
                 } else {
@@ -54,11 +55,7 @@ class Spieler {
         }
     }
 
-    Figur selectSpielfigur(int index) {
-        return figures.get(index);
-    }
-
-    ArrayList<Figur> getFigures() {
+    public ArrayList<Figur> getFigures() {
         return figures;
     }
 
@@ -70,9 +67,9 @@ class Spieler {
         System.out.println("Du hast eine " + w + " gewürfelt.");
     }
 
-    private void askedmove(int wurfel) {
-        outputWurf(wurfel);
-        while (!Spielfeld.setFeld(id, wurfel, new IntInput("Mit Welcher Figur willst du gehen?\n" + "Du kannst von Figur " + 0 + " bis Figur " + (getFigures().size() - 1) + " wählen", 0, getFigures().size()).get()))
+    private void askedmove(int p_w) {
+        new Display();
+        while (!Spielfeld.setFeld(id, p_w, new IntInput("Mit Welcher Figur willst du gehen?\n" + "Du kannst von Figur " + 0 + " bis Figur " + (getFigures().size() - 1) + " wählen", 0, getFigures().size()).get()))
             ;
     }
 }

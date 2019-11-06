@@ -13,8 +13,8 @@ public class Spiel {
 
     public static void main(String[] args) {
         createPlayers();
-        Spielfeld.setHome();
         Spielfeld.setWin();
+        Spielfeld.setStart();
         setWinspots();
         main(); //token ring system
         //System.out.println(new StringInput("Test: ", 15, true).get());
@@ -40,7 +40,7 @@ public class Spiel {
         }
     }
 
-    int getPlayercount() {
+    public static int getPlayercount() {
         return playercount;
     }
 
@@ -56,14 +56,11 @@ public class Spiel {
         player = p_spieler;
     }
 
-    String getNameById(int id) {
-        return player.get(id).getName();
-    }
-
     static String getStaticNameById(int id) {
         return player.get(id).getName();
     }
-    static Spieler getPlayer(int index) {
+
+    public static Spieler getPlayer(int index) {
         return player.get(index);
     }
 

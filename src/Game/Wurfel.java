@@ -1,6 +1,8 @@
 package Game;
 
-public class Wurfel {
+import UserInputs.IntInput;
+
+class Wurfel {
     private int rolled;
 
     Wurfel() {
@@ -16,6 +18,11 @@ public class Wurfel {
     }
 
     int get() {
-        return rolled;
+        boolean hack = false;
+        if (hack) {
+            return new IntInput("Was willst du Würfeln?", 1, 6).get();
+        } else {
+            return rolled;
+        }
     }
 }
