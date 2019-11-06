@@ -34,7 +34,7 @@ public class Spiel {
     private static void main() {
         while (gameruns) {
             for (Spieler spieler : player) {
-                System.out.println(spieler.getName() + " ist jetzt dran.");
+                System.out.println(spieler.getName() + " (P" + spieler.getId() + ") ist jetzt dran.");
                 spieler.move(false);
             }
         }

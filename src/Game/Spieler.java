@@ -23,7 +23,6 @@ public class Spieler {
         int w;
         if (gotout) {
             w = new Wurfel().get();
-            outputWurf(w);
             if (!Spielfeld.setFeld(id, w, figures.get(figures.size() - 1).getID())) {
                 askedmove(w);
             }
@@ -40,11 +39,11 @@ public class Spieler {
                 }
             } else {
                 w = new Wurfel().get();
-                outputWurf(w);
                 if (w == 6) {
                     if (figures.size() == 4) {
                         askedmove(w);
                     } else {
+                        outputWurf(w);
                         figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
                         move(true);
                     }
@@ -69,7 +68,12 @@ public class Spieler {
 
     private void askedmove(int p_w) {
         new Display();
+        outputWurf(p_w);
         while (!Spielfeld.setFeld(id, p_w, new IntInput("Mit Welcher Figur willst du gehen?\n" + "Du kannst von Figur " + 0 + " bis Figur " + (getFigures().size() - 1) + " wählen", 0, getFigures().size()).get()))
             ;
+    }
+
+    int getId() {
+        return id;
     }
 }

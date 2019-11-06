@@ -32,9 +32,20 @@ public class Display {
             }
         }
         for (int i = 0; i < Spiel.getPlayercount(); i++) {
+            int resthomespotanzahl = 4 - Spiel.getPlayer(i).getFigures().size() - Spielfeld.getWinspot().get(i).size();
             for (int j = 0; j < 4; j++) { //4 Spots
-                int resthomespotanzahl = 4 - Spiel.getPlayer(i).getFigures().size() - Spielfeld.getWinspot().size();
+                //wenn nur 2 oder 3 Spieler
+                if (resthomespotanzahl < j + 1) {
+                    homespots[i][j] = "    ";
+                } else {
+                    homespots[i][j] = "MMMM";
+                }
 
+            }
+        }
+        for (int i = Spiel.getPlayercount(); i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                homespots[i][j] = "    ";
             }
         }
     }
@@ -44,12 +55,12 @@ public class Display {
                 "                         " + "#".repeat(16) + "                         ",
                 "                         # " + positions[8][0] + " | " + positions[9][0] + " | " + positions[10][0] + " #                         ",
                 "                         # " + positions[8][1] + " | " + positions[9][1] + " | " + positions[10][1] + " #                         ",
-                "         8888   8888     #____XXXXXX____#   XXXX   XXXX           ",
-                "         8888   8888     # " + positions[7][0] + " X    X " + positions[11][0] + " #   XXXX   XXXX           ",
+                "         " + homespots[0][0] + "   " + homespots[0][1] + "     #____XXXXXX____#   " + homespots[1][0] + "   " + homespots[1][1] + "           ",
+                "         " + homespots[0][0] + "   " + homespots[0][1] + "     # " + positions[7][0] + " X    X " + positions[11][0] + " #   " + homespots[1][0] + "   " + homespots[1][1] + "           ",
                 "                         # " + positions[7][1] + " X    X " + positions[11][1] + " #                         ",
                 "                         #____X....X____#                         ",
-                "         8888   8888     # " + positions[6][0] + " X    X " + positions[12][0] + " #   XXXX   XXXX           ",
-                "         8888   8888     # " + positions[6][1] + " X    X " + positions[12][1] + " #   XXXX   XXXX           ",
+                "         " + homespots[0][2] + "   " + homespots[0][3] + "     # " + positions[6][0] + " X    X " + positions[12][0] + " #   " + homespots[1][2] + "   " + homespots[1][3] + "           ",
+                "         " + homespots[0][2] + "   " + homespots[0][3] + "     # " + positions[6][1] + " X    X " + positions[12][1] + " #   " + homespots[1][2] + "   " + homespots[1][3] + "           ",
                 "                         #____X....X____#                         ",
                 "                         # " + positions[5][0] + " X    X " + positions[13][0] + " #                         ",
                 "                         # " + positions[5][1] + " X    X " + positions[13][1] + " #                         ",
@@ -65,11 +76,11 @@ public class Display {
                 "     " + "#".repeat(21) + "____X....X____" + "#".repeat(21) + "     ",
                 "                         # " + positions[33][0] + " X    X " + positions[25][0] + " #                         ",
                 "                         # " + positions[33][1] + " X    X " + positions[25][1] + " #                         ",
-                "          MMMM   MMMM    #____X....X____#   OOOO   OOOO           ",
-                "          MMMM   MMMM    # " + positions[32][0] + " X    X " + positions[26][0] + " #   OOOO   OOOO           ",
-                "                         # " + positions[32][1] + " X    X " + positions[26][1] + "   #                         ",
-                "          MMMM   MMMM    #____X....X____#   OOOO   OOOO           ",
-                "          MMMM   MMMM    # " + positions[31][0] + " X    X " + positions[27][0] + " #   OOOO   OOOO           ",
+                "          " + homespots[2][2] + "   " + homespots[2][3] + "    #____X....X____#   " + homespots[3][3] + "   " + homespots[3][2] + "           ",
+                "          " + homespots[2][2] + "   " + homespots[2][3] + "    # " + positions[32][0] + " X    X " + positions[26][0] + " #   " + homespots[3][3] + "   " + homespots[3][2] + "           ",
+                "                         # " + positions[32][1] + " X    X " + positions[26][1] + " #                         ",
+                "          " + homespots[2][1] + "   " + homespots[2][0] + "    #____X....X____#   " + homespots[3][1] + "   " + homespots[3][0] + "           ",
+                "          " + homespots[2][1] + "   " + homespots[2][0] + "    # " + positions[31][0] + " X    X " + positions[27][0] + " #   " + homespots[3][1] + "   " + homespots[3][0] + "           ",
                 "                         # " + positions[31][1] + " X    X " + positions[27][1] + " #                         ",
                 "                         #____XXXXXX____#                         ",
                 "                         # " + positions[30][0] + " | " + positions[29][0] + " | " + positions[28][0] + " #                         ",

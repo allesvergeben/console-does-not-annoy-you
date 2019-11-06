@@ -6,7 +6,9 @@ public class IntInput {
     private int UserInputInt;
 
     public IntInput(String message, int von, int bis) {
+        //Scanner
         Scanner inputScanner = new Scanner(System.in);
+        //setzt den Wert auf UserInputInt
         set(inputhandler(message, inputScanner, von, bis));
     }
 
@@ -15,12 +17,12 @@ public class IntInput {
         int p_validate_int;
         try {
             //Versucht die Eingabe von einem String zu einem int zu "parsen"
-
             p_validate_int = Integer.parseInt(p_validate);
             if (p_validate_int >= p_von && p_validate_int <= p_bis) {
                 return p_validate_int;
             } else {
                 System.out.println("Es können hier nur Zahlen von " + Math.round(p_von) + " bis " + Math.round(p_bis) + " eingegeben werden.");
+                //wenn error -1
                 return -1;
             }
         } catch (java.lang.NumberFormatException e) {
@@ -29,7 +31,7 @@ public class IntInput {
             //Nutzer auffordern, nur Zahlen nach dem Schema ±xxxxxx... einzugeben
             System.out.println("Es können hier nur Ganze Zahlen eingegeben werden");
             //-1 zurückgeben, weil -> siehe inputhandler
-            //geht in dem falle, weil -1 nie vom Nutzer eingegeben werden müsste, sonst wird er einfach nochmal gefragt
+            //geht in dem Falle, weil -1 nie vom Nutzer eingegeben werden müsste, sonst wird er einfach nochmal gefragt
             return -1; // "sagt da ist ein Fehler"
         }
     }

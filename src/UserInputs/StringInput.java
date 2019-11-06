@@ -26,19 +26,17 @@ public class StringInput {
     }
 
     private void checkCommands(String p_input) {
-        switch (p_input.toUpperCase()) {
-            case "!HELP":
-                userInputString = "!help wurde eigegeben";
-                break;
-            case "!LOST":
-                userInputString = "u are lost kappa";
-                break;
-            default:
-                System.out.println("Dieser Befehl wurde nicht gefunden! Für eine Liste an befehlen, gib !help ein.");
-                checkCommands(inputScanner.nextLine());
+        if ("!HELP".equals(p_input.toUpperCase())) {
+            userInputString = "!help wurde eigegeben";
+        } else {
+            System.out.println("Dieser Befehl wurde nicht gefunden! Für eine Liste an befehlen, gib !help ein.");
+            checkCommands(inputScanner.nextLine());
         }
     }
     public String get() {
         return userInputString;
     }
 }
+
+
+
