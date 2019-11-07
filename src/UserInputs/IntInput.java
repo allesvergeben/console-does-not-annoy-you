@@ -3,7 +3,7 @@ package UserInputs;
 import java.util.Scanner;
 
 public class IntInput {
-    private int UserInputInt;
+    private int UserInputInt; //immer priv
 
     public IntInput(String message, int von, int bis) {
         //Scanner
@@ -21,7 +21,7 @@ public class IntInput {
             if (p_validate_int >= p_von && p_validate_int <= p_bis) {
                 return p_validate_int;
             } else {
-                System.out.println("Es können hier nur Zahlen von " + Math.round(p_von) + " bis " + Math.round(p_bis) + " eingegeben werden.");
+                System.out.println("Es können hier nur Zahlen von " + p_von + " bis " + p_bis + " eingegeben werden.");
                 //wenn error -1
                 return -1;
             }

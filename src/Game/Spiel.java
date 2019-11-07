@@ -5,11 +5,12 @@ import UserInputs.StringInput;
 
 import java.util.ArrayList;
 
-
 public class Spiel {
     private static ArrayList<Spieler> player;
     private static int playercount;
     private static boolean gameruns = true;
+    private static boolean hack = false;
+    private static boolean pc = false;
 
     public static void main(String[] args) {
         createPlayers();
@@ -17,16 +18,13 @@ public class Spiel {
         Spielfeld.setStart();
         setWinspots();
         main(); //token ring system
-        //System.out.println(new StringInput("Test: ", 15, true).get());
-        //for (int i = 0; i <100; i++) System.out.println(new Wurfel().get());
-        //System.out.println(new DoubleInput("Input a Double",1,10).get());
     }
 
     private static void createPlayers() {
         ArrayList<Spieler> Spieler = new ArrayList<>();
         playercount = new IntInput("Zu wie vielt soll gespielt werden", 2, 4).get();
         for (int i = 1; i <= playercount; i++) {
-            Spieler.add(new Spieler(new StringInput("Bitte gib den Name des " + i + ". Spielers an.", 15, false).get(), i));
+            Spieler.add(new Spieler(new StringInput("Bitte gib den Name des " + i + ". Spielers an.", 15).get(), i, hack, pc));
         }
         setPlayers(Spieler);
     }
@@ -69,5 +67,13 @@ public class Spiel {
         for (int i = 0; i < playercount; i++) {
             Spielfeld.getWinspot().add(i, winlist);
         }
+    }
+
+    public static void setHack(boolean p_hack) {
+        hack = p_hack;
+    }
+
+    public static void setPc(boolean p_pc) {
+        pc = p_pc;
     }
 }

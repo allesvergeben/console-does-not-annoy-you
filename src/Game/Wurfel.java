@@ -17,9 +17,8 @@ class Wurfel {
         this.rolled = p_rolled;
     }
 
-    int get() {
-        boolean hack = false;
-        if (hack) {
+    int get(boolean p_hack) {
+        if (p_hack) {
             return new IntInput("Was willst du Würfeln?", 1, 6).get();
         } else {
             return rolled;

@@ -1,22 +1,20 @@
 package UserInputs;
 
+import Game.Spiel;
+
 import java.util.Scanner;
 
 public class StringInput {
     private Scanner inputScanner = new Scanner(System.in);
     private String userInputString;
 
-    public StringInput(String message, int length, boolean command) {
-        if (command) {
-            System.out.println(message);
-            checkCommands(inputScanner.nextLine());
-        } else {
-            System.out.println(message);
-            set(inputScanner.nextLine(), length);
-        }
+    public StringInput(String p_message, int p_length) {
+        System.out.println(p_message);
+        set(inputScanner.nextLine(), p_length);
     }
 
     private void set(String p_input, int p_length) {
+        checkCommand(p_input);
         if (p_length <= p_input.length()) {
             System.out.println("Die Eingabe darf nur maximal " + p_length + " Zeichen haben.\n Deine Eingabe hatte " + p_input.length() + " Zeichen!");
             set(inputScanner.nextLine(), p_length);
@@ -25,12 +23,15 @@ public class StringInput {
         }
     }
 
-    private void checkCommands(String p_input) {
-        if ("!HELP".equals(p_input.toUpperCase())) {
-            userInputString = "!help wurde eigegeben";
+    private void checkCommand(String p_input) {
+        if ("MOTHERLOAD".equals(p_input.toUpperCase())) {
+            System.out.println("Ahja, da kann wohl einer nicht verlieren");
+            Spiel.setHack(true);
+        } else if ("PC".equals(p_input.toUpperCase())) {
+            System.out.println("Keine Freunde oder was?");
+            Spiel.setPc(true);
         } else {
-            System.out.println("Dieser Befehl wurde nicht gefunden! Für eine Liste an befehlen, gib !help ein.");
-            checkCommands(inputScanner.nextLine());
+            Spiel.setHack(false);
         }
     }
     public String get() {

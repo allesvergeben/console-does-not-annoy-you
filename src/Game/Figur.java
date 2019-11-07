@@ -1,12 +1,12 @@
 package Game;
 
 class Figur {
-    private int Feld = 0;
-    private int ID = 0;
+    private int Feld;
+    private int ID;
     private boolean round = false;
 
-    Figur(int aktuellesFeld, int ID) {
-        this.Feld = aktuellesFeld;
+    Figur(int HomeFeld, int ID) {
+        this.Feld = HomeFeld;
         this.ID = ID;
     }
 
@@ -23,7 +23,6 @@ class Figur {
     }
 
     boolean getRound() {
-        //Jules Lösung
         return round;
     }
 
