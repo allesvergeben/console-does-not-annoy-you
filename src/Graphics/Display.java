@@ -46,7 +46,7 @@ public class Display {
                 positions[i][1] = "  ";
             } else {
                 positions[i][0] = "P" + Spielfeld.getSpielfeld()[i][0];
-                positions[i][1] = "F" + Spielfeld.getSpielfeld()[i][1];
+                positions[i][1] = "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]);
             }
         }
         //homespots
@@ -93,11 +93,11 @@ public class Display {
                 "     " + "#".repeat(21) + "____X....X____" + "#".repeat(21) + "     ",
                 "                         # " + positions[33][0] + " X " + winspots[3][1] + " X " + positions[25][0] + " #                         ",
                 "                         # " + positions[33][1] + " X " + winspots[3][1] + " X " + positions[25][1] + " #                         ",
-                "          " + homespots[2][2] + "   " + homespots[2][3] + "    #____X....X____#   " + homespots[3][3] + "   " + homespots[3][2] + "           ",
-                "          " + homespots[2][2] + "   " + homespots[2][3] + "    # " + positions[32][0] + " X " + winspots[3][2] + " X " + positions[26][0] + " #   " + homespots[3][3] + "   " + homespots[3][2] + "           ",
+                "          " + homespots[3][2] + "   " + homespots[3][3] + "    #____X....X____#   " + homespots[2][3] + "   " + homespots[2][2] + "           ",
+                "          " + homespots[3][2] + "   " + homespots[3][3] + "    # " + positions[32][0] + " X " + winspots[3][2] + " X " + positions[26][0] + " #   " + homespots[2][3] + "   " + homespots[2][2] + "           ",
                 "                         # " + positions[32][1] + " X " + winspots[3][2] + " X " + positions[26][1] + " #                         ",
-                "          " + homespots[2][1] + "   " + homespots[2][0] + "    #____X....X____#   " + homespots[3][1] + "   " + homespots[3][0] + "           ",
-                "          " + homespots[2][1] + "   " + homespots[2][0] + "    # " + positions[31][0] + " X " + winspots[3][3] + " X " + positions[27][0] + " #   " + homespots[3][1] + "   " + homespots[3][0] + "           ",
+                "          " + homespots[3][1] + "   " + homespots[3][0] + "    #____X....X____#   " + homespots[2][1] + "   " + homespots[2][0] + "           ",
+                "          " + homespots[3][1] + "   " + homespots[3][0] + "    # " + positions[31][0] + " X " + winspots[3][3] + " X " + positions[27][0] + " #   " + homespots[2][1] + "   " + homespots[2][0] + "           ",
                 "                         # " + positions[31][1] + " X " + winspots[3][3] + " X " + positions[27][1] + " #                         ",
                 "                         #____XXXXXX____#                         ",
                 "                         # " + positions[30][0] + " | " + positions[29][0] + " | " + positions[28][0] + " #                         ",

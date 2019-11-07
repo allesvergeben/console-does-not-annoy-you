@@ -9,11 +9,12 @@ import java.util.ArrayList;
 public class Spiel {
     private static ArrayList<Spieler> player;
     private static int playercount;
-    private static boolean gameruns = true;
+    private static boolean gameruns;
     private static boolean hack;
     private static boolean pc;
 
     public static void main(String[] args) {
+        gameruns = true;
         createPlayers();
         Spielfeld.setWin();
         Spielfeld.setStart();
@@ -63,9 +64,8 @@ public class Spiel {
     }
 
     private static void setWinspots() {
-        ArrayList<Boolean> winlist = new ArrayList<>();
         for (int i = 0; i < playercount; i++) {
-            Spielfeld.getWinspot().add(i, winlist);
+            Spielfeld.getWinspot().add(new ArrayList<>());
         }
     }
 

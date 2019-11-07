@@ -2,25 +2,30 @@ package Game;
 
 class Figur {
     private int Feld;
-    private int ID;
+    private int hash;
+    private int id;
     private boolean round = false;
+
 
     Figur(int p_home, int p_id) {
         this.Feld = p_home;
-        this.ID = p_id;
-        this.ID = hashCode();
+        this.id = p_id;
+        this.hash = hashCode();
     }
 
     int getFeld() {
         return Feld;
     }
 
+    int getId() {
+        return this.id;
+    }
     void setFeld(int p_Feld) {
         this.Feld = p_Feld;
     }
 
-    int getID() {
-        return ID;
+    int getHash() {
+        return hash;
     }
 
     boolean getRound() {
@@ -29,7 +34,7 @@ class Figur {
 
     @Override
     public int hashCode() {
-        int result = ID ^ (ID >>> 32);
+        int result = id ^ (id >>> 32);
         result = 31 * result + (Math.random() * 9 + "" + Math.random() * 9).hashCode();
         result = 31 * result + (Math.random() * 9 + "" + Math.random() * 9).hashCode();
         return result;
