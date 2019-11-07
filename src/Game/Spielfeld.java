@@ -35,6 +35,10 @@ public class Spielfeld extends Spiel {
         try {
             Feld = p_Wurf + getPlayer(p_Spieler - 1).getFigures().get(p_FigurID).getFeld();
         } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error Spieler: " + (p_Spieler - 1));
+            System.out.println("Error FID: " + p_FigurID);
+            System.out.println("Error Wurf: " + p_Wurf);
+            System.out.println("Error Figur Size" + getPlayer(p_Spieler - 1).getFigures().size());
             //secureCheck
             return false;
         }
@@ -48,14 +52,15 @@ public class Spielfeld extends Spiel {
             return false;
         } else if (Spielfeld[Feld][0] != p_Spieler && Spielfeld[Feld][0] != 0) {
             //Figur löschen (schmeißen)
+
             getPlayer(Spielfeld[Feld][0] - 1).getFigures().remove(Spielfeld[Feld][1]); //GEWORFEN!
+
             System.out.println(getPlayer(p_Spieler - 1).getName() + " hat von " + getPlayer(Spielfeld[Feld][0] - 1).getName() + " die Figur mit der ID " + Spielfeld[Feld][1] + " rausgeworfen!");
             switchFig(p_Spieler - 1, p_FigurID, Feld);
         } else {
             switchFig(p_Spieler - 1, p_FigurID, Feld);
         }
         return true;
-
     }
 
     private static void switchFig(int p_Spieler, int p_FigurID, int p_Feld) {

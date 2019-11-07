@@ -49,11 +49,12 @@ public class Spieler {
                 } else {
                     w = new Wurfel().get(hack);
                     if (w == 6) {
-                        if (figures.size() == 4) {
+                        if (figures.size() + Spielfeld.getWinspot().get(id - 1).size() == 4) {
                             askedmove(w);
                         } else {
                             outputWurf(w);
                             figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
+                            //Spielfeld.setFeld(id-1,Spielfeld.getStart(id - 1),figures.size()-1);
                             move(true);
                         }
                     } else {
@@ -87,6 +88,9 @@ public class Spieler {
         return id;
     }
 
+    boolean getPc() {
+        return pc;
+    }
     private void PC(boolean p_gotout) {
         int w;
         if (p_gotout) {
@@ -98,7 +102,7 @@ public class Spieler {
             if (figures.size() == 0) {
                 for (int i = 0; i < 3; i++) {
                     w = new Wurfel().get(false);
-                    Spielfeld.setFeld(id, w, (int) (Math.random() * getFigures().size() - 1));
+                    Spielfeld.setFeld(id, w, getFigures().size());
                     if (w == 6) {
                         figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
                         i = 4;
@@ -108,7 +112,7 @@ public class Spieler {
             } else {
                 w = new Wurfel().get(false);
                 if (w == 6) {
-                    if (figures.size() == 4) {
+                    if (figures.size() + Spielfeld.getWinspot().get(id - 1).size() == 4) {
                         Spielfeld.setFeld(id, w, (int) (Math.random() * getFigures().size()));
                     } else {
                         figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
@@ -116,6 +120,7 @@ public class Spieler {
                     }
                 } else {
                     Spielfeld.setFeld(id, w, (int) (Math.random() * getFigures().size()));
+
                 }
             }
         }

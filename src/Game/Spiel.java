@@ -1,5 +1,6 @@
 package Game;
 
+import Graphics.Display;
 import UserInputs.IntInput;
 import UserInputs.StringInput;
 
@@ -34,6 +35,9 @@ public class Spiel {
             for (Spieler spieler : player) {
                 System.out.println(spieler.getName() + " (P" + spieler.getId() + ") ist jetzt dran.");
                 spieler.move(false);
+                if (spieler.getPc()) {
+                    new Display();
+                }
             }
         }
     }
