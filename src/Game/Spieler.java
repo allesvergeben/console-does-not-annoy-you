@@ -13,8 +13,8 @@ public class Spieler {
     private ArrayList<Figur> figures = new ArrayList<>();
     private String name;
     private int id;
-    private boolean hack = false;
-    private boolean pc = false;
+    private boolean hack;
+    private boolean pc;
 
     Spieler(String p_name, int p_id, boolean p_hack, boolean p_pc) {
         this.name = p_name;
@@ -72,8 +72,8 @@ public class Spieler {
         return name;
     }
 
-    private void outputWurf(int w) {
-        System.out.println("Du hast eine " + w + " gewürfelt.");
+    private void outputWurf(int p_w) {
+        System.out.println("Du hast eine " + p_w + " gewürfelt.");
     }
 
     private void askedmove(int p_w) {

@@ -46,20 +46,16 @@ public class Spiel {
         gameruns = false;
     }
 
-    ArrayList<Spieler> getPlayers() {
-        return player;
-    }
-
     private static void setPlayers(ArrayList<Spieler> p_spieler) {
         player = p_spieler;
     }
 
-    static String getStaticNameById(int id) {
-        return player.get(id).getName();
+    static String getStaticNameById(int p_id) {
+        return player.get(p_id).getName();
     }
 
-    public static Spieler getPlayer(int index) {
-        return player.get(index);
+    public static Spieler getPlayer(int p_index) {
+        return player.get(p_index);
     }
 
     private static void setWinspots() {

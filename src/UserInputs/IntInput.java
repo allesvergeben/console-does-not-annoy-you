@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class IntInput {
     private int UserInputInt; //immer priv
 
-    public IntInput(String message, int von, int bis) {
+    public IntInput(String p_message, int p_von, int p_bis) {
         //Scanner
         Scanner inputScanner = new Scanner(System.in);
         //setzt den Wert auf UserInputInt
-        set(inputhandler(message, inputScanner, von, bis));
+        set(inputhandler(p_message, inputScanner, p_von, p_bis));
     }
 
     private static int parseInt(String p_validate, int p_von, int p_bis) {

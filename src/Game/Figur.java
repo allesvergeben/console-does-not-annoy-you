@@ -5,9 +5,9 @@ class Figur {
     private int ID;
     private boolean round = false;
 
-    Figur(int HomeFeld, int ID) {
-        this.Feld = HomeFeld;
-        this.ID = ID;
+    Figur(int p_home, int p_id) {
+        this.Feld = p_home;
+        this.ID = p_id;
     }
 
     int getFeld() {
