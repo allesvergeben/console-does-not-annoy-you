@@ -34,6 +34,7 @@ public class StringInput {
             Spiel.setPc(true);
         } else {
             Spiel.setHack(false);
+            Spiel.setPc(false);
         }
     }
     public String get() {

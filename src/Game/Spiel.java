@@ -9,8 +9,8 @@ public class Spiel {
     private static ArrayList<Spieler> player;
     private static int playercount;
     private static boolean gameruns = true;
-    private static boolean hack = false;
-    private static boolean pc = false;
+    private static boolean hack;
+    private static boolean pc;
 
     public static void main(String[] args) {
         createPlayers();

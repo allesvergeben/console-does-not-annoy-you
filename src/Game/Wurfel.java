@@ -1,5 +1,6 @@
 package Game;
 
+import Graphics.Display;
 import UserInputs.IntInput;
 
 class Wurfel {
@@ -19,6 +20,7 @@ class Wurfel {
 
     int get(boolean p_hack) {
         if (p_hack) {
+            new Display();
             return new IntInput("Was willst du Würfeln?", 1, 6).get();
         } else {
             return rolled;
