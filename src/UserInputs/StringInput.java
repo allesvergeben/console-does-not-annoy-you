@@ -9,7 +9,9 @@ public class StringInput {
     private String userInputString;
 
     public StringInput(String p_message, int p_length) {
+        //Sagt dem Nutzer was er eingeben soll
         System.out.println(p_message);
+        //setzt die eingabe auf userInputString
         set(inputScanner.nextLine(), p_length);
     }
 

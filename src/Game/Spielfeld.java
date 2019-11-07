@@ -35,11 +35,11 @@ public class Spielfeld extends Spiel {
         try {
             Feld = p_Wurf + getPlayer(p_Spieler - 1).getFigures().get(p_FigurID).getFeld();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Hier wurde gerade ein Käfer zertreten!");
+            //secureCheck
             return false;
         }
         if (Feld >= 40) {
-            Feld = Feld - 39; //noch zu Testen
+            Feld = Feld - 39;
             getPlayer(p_Spieler - 1).getFigures().get(p_FigurID).setRound(true);
 
         }
@@ -47,10 +47,9 @@ public class Spielfeld extends Spiel {
             System.out.println("Hier ist bereits eine Figur von dir");
             return false;
         } else if (Spielfeld[Feld][0] != p_Spieler && Spielfeld[Feld][0] != 0) {
-            //Figur löschen (schemißen)
+            //Figur löschen (schmeißen)
             getPlayer(Spielfeld[Feld][0] - 1).getFigures().remove(Spielfeld[Feld][1]); //GEWORFEN!
             System.out.println(getPlayer(p_Spieler - 1).getName() + " hat von " + getPlayer(Spielfeld[Feld][0] - 1).getName() + " die Figur mit der ID " + Spielfeld[Feld][1] + " rausgeworfen!");
-            //Spielfeld wo die figur vorher drauf war leeren
             switchFig(p_Spieler - 1, p_FigurID, Feld);
         } else {
             switchFig(p_Spieler - 1, p_FigurID, Feld);

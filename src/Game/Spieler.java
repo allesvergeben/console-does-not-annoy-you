@@ -98,7 +98,7 @@ public class Spieler {
             if (figures.size() == 0) {
                 for (int i = 0; i < 3; i++) {
                     w = new Wurfel().get(false);
-                    Spielfeld.setFeld(id, w, (int) (Math.random() * getFigures().size()));
+                    Spielfeld.setFeld(id, w, (int) (Math.random() * getFigures().size() - 1));
                     if (w == 6) {
                         figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
                         i = 4;
