@@ -77,21 +77,17 @@ public class Spielfeld extends Spiel {
 
     private static boolean gohome(int p_Spieler, int p_FigurHash, int p_Feld) {
 
-        //Feld - Homespot
         if (getPlayer(p_Spieler).getFigures().size() != 0) {
             if (getPlayer(p_Spieler).getFigurByHash(p_FigurHash).getRound() && getWin(p_Spieler) < p_Feld) {
-                int position = p_Feld - getWin(p_Spieler);
-                //TODO      if (checkif outof bounds){
+                //To-Do Entsackem
                 //Altes Feld leeren
                 Spielfeld[getPlayer(p_Spieler).getFigurByHash(p_FigurHash).getFeld()][0] = 0;
                 Spielfeld[getPlayer(p_Spieler).getFigurByHash(p_FigurHash).getFeld()][1] = 0;
                 //Figur löschen
                 getPlayer(p_Spieler).getFigures().remove(getPlayer(p_Spieler).getFigurIndexByHash(p_FigurHash));
                 //winspot+1
-                setWinspot(position, p_Spieler);
+                setWinspot(p_Spieler);
                 return true;
-                // }
-                // return false;
             } else {
                 return false;
             }
@@ -103,9 +99,9 @@ public class Spielfeld extends Spiel {
         return winspot;
     }
 
-    private static void setWinspot(int index, int p_spieler) {
+    private static void setWinspot(int p_spieler) {
         new PlayerOutput().nextinWin(getPlayer(p_spieler).getName());
-        winspot.get(p_spieler).add(index, true);
+        winspot.get(p_spieler).add(true);
         if (winspot.get(p_spieler).size() == 4) {
             new PlayerOutput().won(getPlayer(p_spieler).getName(), getPlayer(p_spieler).getId());
             stopGame();
