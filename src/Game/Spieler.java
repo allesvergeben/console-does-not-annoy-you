@@ -154,25 +154,35 @@ public class Spieler {
 
     boolean checkInHomeWalk(int p_w) {
         if (Spielfeld.getWinspot().get(id).size() > 0) {
+            ArrayList<int[]> choices = new ArrayList<>();
             switch (p_w) {
                 case 1:
-                    ArrayList<int[]> choices = new ArrayList<>();
                     for (int i = 0; i < 3; i++) {
                         if (Spielfeld.getWinspot().get(id).get(i) == Spielfeld.getWinspot().get(id).get(i + 1)) {
                             choices.add(new int[]{i, i + 1});
                         }
-                        //askedmove(choices);
                     }
-                    //check position +1
-                    break;
+                    return askedHomeMove(choices);
+                //check 0 auf 1, 1 auf 2, 2 auf 3
                 case 2:
-                    //0 auf 2
-                    //1 auf 3
-                    //check spot
-                    break;
+                    for (int i = 0; i < 1; i++) {
+                        if (Spielfeld.getWinspot().get(id).get(i) == Spielfeld.getWinspot().get(id).get(i + 2) && Spielfeld.getWinspot().get(id).get(i + 1) == null) {
+                            choices.add(new int[]{i, i + 1});
+                        }
+                    }
+                    return askedHomeMove(choices);
+                //0 auf 2, 1 auf 3
                 case 3:
-                    //check spot 3 und dazeischen
-                    break;
+                    if (Spielfeld.getWinspot().get(id).get(0) != null) {
+                        for (int i = 1; i < 3; i++) {
+                            if (Spielfeld.getWinspot().get(id).get(0) != null) {
+                                return false;
+                            }
+                        }
+                        choices.add(new int[]{0, 3});
+                    }
+                    return askedHomeMove(choices);
+                //check 0 auf 3 und dazeischen
                 default:
                     return false;
             }
@@ -184,7 +194,7 @@ public class Spieler {
     private boolean askedHomeMove(ArrayList<int[]> p_choices) {
         new Display();
         int choice = new PlayerOutput().askhome(p_choices);
-        if (p_choices.get(choice)[0] == 0) {
+        if (p_choices.get(choice)[0] == -1) {
             return false;
         } else {
             Spielfeld.getWinspot().get(id).remove(p_choices.get(choice)[0]);
