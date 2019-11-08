@@ -3,6 +3,7 @@ package Game;
 import Graphics.Display;
 import UserInputs.IntInput;
 import UserInputs.StringInput;
+import UserOutputs.PlayerOutput;
 
 import java.util.ArrayList;
 
@@ -34,13 +35,14 @@ public class Spiel {
     private static void main() {
         while (gameruns) {
             for (Spieler spieler : player) {
-                System.out.println(spieler.getName() + " (P" + spieler.getId() + ") ist jetzt dran.");
+                new PlayerOutput().turn(spieler.getName(), spieler.getId());
                 spieler.move(false);
-                if (spieler.getPc()) {
+                if (spieler.getPc() && gameruns) {
                     new Display();
                 }
             }
         }
+        new Display();
     }
 
     public static int getPlayercount() {

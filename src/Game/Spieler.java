@@ -2,6 +2,8 @@ package Game;
 
 import Graphics.Display;
 import UserInputs.IntInput;
+import UserOutputs.PcOutput;
+import UserOutputs.PlayerOutput;
 
 import java.util.ArrayList;
 
@@ -33,13 +35,13 @@ public class Spieler {
                 if (!Spielfeld.setFeld(id, w, figures.get(figures.size() - 1).getHash())) {
                     askedmove(w);
                 } else {
-                    System.out.println("Du bist mit einer Figur rausgekommen und hast eine " + w + " gewürfelt");
+                    new PlayerOutput().out();
                 }
             } else {
                 if (figures.size() == 0 && Spielfeld.getWinspot().get(id - 1).size() != 4) {
                     for (int i = 0; i < 3; i++) {
                         w = new Wurfel().get(hack);
-                        outputWurf(w);
+                        new PlayerOutput().rolled(w);
                         if (w == 6) {
                             figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
                             Spielfeld.setFeld(id - 1, Spielfeld.getStart(id - 1), figures.get(getFigures().size() - 1).getHash());
@@ -53,7 +55,7 @@ public class Spieler {
                         if (figures.size() + Spielfeld.getWinspot().get(id - 1).size() >= 4) {
                             askedmove(w);
                         } else {
-                            outputWurf(w);
+                            new PlayerOutput().rolled(w);
                             figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
                             Spielfeld.setFeld(id - 1, Spielfeld.getStart(id - 1), figures.get(getFigures().size() - 1).getHash());
                             move(true);
@@ -74,13 +76,9 @@ public class Spieler {
         return name;
     }
 
-    private void outputWurf(int p_w) {
-        System.out.println("Du hast eine " + p_w + " gewürfelt.");
-    }
-
     private void askedmove(int p_w) {
         new Display();
-        outputWurf(p_w);
+        new PlayerOutput().rolled(p_w);
         while (!Spielfeld.setFeld(id, p_w, figures.get(new IntInput("Mit Welcher Figur willst du gehen?\n" + "Du kannst von Figur " + 0 + " bis Figur " + (getFigures().size() - 1) + " wählen", 0, getFigures().size() - 1).get()).getHash()))
             ;
     }
@@ -101,12 +99,18 @@ public class Spieler {
     boolean getPc() {
         return pc;
     }
+
     private void PC(boolean p_gotout) {
         int w;
         if (p_gotout) {
             w = new Wurfel().get(false);
+            new PcOutput().rolled(getName(), getId(), w);
             if (!Spielfeld.setFeld(id, w, figures.get(figures.size() - 1).getHash())) {
-                Spielfeld.setFeld(id, w, getFigures().get((int) (Math.random() * getFigures().size() - 1)).getHash());
+                int choosefigure = (int) (Math.random() * getFigures().size() - 1);
+                new PcOutput().moved(getName(), getId(), choosefigure);
+                Spielfeld.setFeld(id, w, getFigures().get(choosefigure).getHash());
+            } else {
+                new PcOutput().out();
             }
         } else {
             if (figures.size() == 0 && Spielfeld.getWinspot().get(id - 1).size() != 4) {
@@ -120,6 +124,7 @@ public class Spieler {
                 }
             } else {
                 w = new Wurfel().get(false);
+                new PcOutput().rolled(getName(), getId(), w);
                 if (w == 6) {
                     if (figures.size() + Spielfeld.getWinspot().get(id - 1).size() >= 4) {
                         Spielfeld.setFeld(id, w, (int) (Math.random() * getFigures().size()));
@@ -129,22 +134,21 @@ public class Spieler {
                     }
                 } else {
                     Spielfeld.setFeld(id, w, getFigures().get((int) (Math.random() * getFigures().size())).getHash());
-
                 }
-            } //hier?
+            }
         }
     }
 
     public int getFigurIndexByHash(int p_hash) {
-        System.out.println("Gesucht wird nach " + p_hash);
+        //System.out.println("Gesucht wird nach " + p_hash);
         for (int i = 0; i < figures.size(); i++) {
-            System.out.println(i + " hat den hash " + figures.get(i).getHash());
+            //System.out.println(i + " hat den hash " + figures.get(i).getHash());
             if (figures.get(i).getHash() == p_hash) {
-                System.out.println("WORKED on " + i);
+                //System.out.println("WORKED on " + i);
                 return i;
             }
         }
-        System.out.println("-1!!!!!");
+        //System.out.println("Error: Could not find the matching hash!");
         return -1;
     }
 }
