@@ -151,4 +151,46 @@ public class Spieler {
         //System.out.println("Error: Could not find the matching hash!");
         return -1;
     }
+
+    boolean checkInHomeWalk(int p_w) {
+        if (Spielfeld.getWinspot().get(id).size() > 0) {
+            switch (p_w) {
+                case 1:
+                    ArrayList<int[]> choices = new ArrayList<>();
+                    for (int i = 0; i < 3; i++) {
+                        if (Spielfeld.getWinspot().get(id).get(i) == Spielfeld.getWinspot().get(id).get(i + 1)) {
+                            choices.add(new int[]{i, i + 1});
+                        }
+                        //askedmove(choices);
+                    }
+                    //check position +1
+                    break;
+                case 2:
+                    //0 auf 2
+                    //1 auf 3
+                    //check spot
+                    break;
+                case 3:
+                    //check spot 3 und dazeischen
+                    break;
+                default:
+                    return false;
+            }
+        }
+        return false;
+
+    }
+
+    private boolean askedHomeMove(ArrayList<int[]> p_choices) {
+        new Display();
+        int choice = new PlayerOutput().askhome(p_choices);
+        if (p_choices.get(choice)[0] == 0) {
+            return false;
+        } else {
+            Spielfeld.getWinspot().get(id).remove(p_choices.get(choice)[0]);
+            Spielfeld.getWinspot().get(id).add(p_choices.get(choice)[1], true);
+            new PlayerOutput().homemove(p_choices.get(choice)[0], p_choices.get(choice)[1]);
+            return true;
+        }
+    }
 }

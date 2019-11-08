@@ -37,6 +37,7 @@ public class StringInput {
             Spiel.setPc(true);
         }
     }
+
     public String get() {
         return userInputString;
     }

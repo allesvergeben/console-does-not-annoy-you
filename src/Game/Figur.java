@@ -20,6 +20,7 @@ class Figur {
     int getId() {
         return this.id;
     }
+
     void setFeld(int p_Feld) {
         this.Feld = p_Feld;
     }
@@ -32,6 +33,10 @@ class Figur {
         return round;
     }
 
+    void setRound(boolean p_round) {
+        this.round = p_round;
+    }
+
     @Override
     public int hashCode() {
         int result = id ^ (id >>> 32);
@@ -39,7 +44,5 @@ class Figur {
         result = 31 * result + (Math.random() * 9 + "" + Math.random() * 9).hashCode();
         return result;
     }
-    void setRound(boolean p_round) {
-        this.round = p_round;
-    }
+
 }

@@ -1,5 +1,9 @@
 package UserOutputs;
 
+import UserInputs.IntInput;
+
+import java.util.ArrayList;
+
 public class PlayerOutput {
     public PlayerOutput() {
 
@@ -31,5 +35,14 @@ public class PlayerOutput {
 
     public void kicked(String p_name, String p_namek, int p_id, int p_idk, int p_FigurID) {
         System.out.println(p_name + " (ID: " + p_id + ") hat von " + p_namek + " (ID: " + p_idk + ") die Figur mit der ID " + p_FigurID + " rausgeworfen!");
+    }
+
+    public void homemove(int p_from, int p_to) {
+        System.out.println("Im Winspot wurde eine Figur von Position " + p_from + " nach " + p_to + " bewegt");
+    }
+
+    public int askhome(ArrayList<int[]> p_choices) {
+        return new IntInput("", 0, p_choices.size()).get();
+
     }
 }

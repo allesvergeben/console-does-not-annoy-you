@@ -95,7 +95,6 @@ public class Spielfeld extends Spiel {
         return false;
     }
 
-
     public static ArrayList<ArrayList<Boolean>> getWinspot() {
         return winspot;
     }
