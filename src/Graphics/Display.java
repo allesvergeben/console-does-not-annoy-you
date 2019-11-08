@@ -11,6 +11,7 @@ public class Display {
     private String[][] winspots = new String[4][4];
 
     public Display() {
+        Colors C = new Colors();
         setPositions();
         setOutput();
         print();
@@ -29,7 +30,20 @@ public class Display {
                 if (Spielfeld.getWinspot().get(i).size() < j + 1) {
                     winspots[i][j] = "  ";
                 } else {
-                    winspots[i][j] = "MM";
+                    switch (i) {
+                        case 0:
+                            winspots[i][j] = Colors.BLUE + "MM" + Colors.RESET;
+                            break;
+                        case 1:
+                            winspots[i][j] = Colors.GREEN + "MM" + Colors.RESET;
+                            break;
+                        case 2:
+                            winspots[i][j] = Colors.RED + "MM" + Colors.RESET;
+                            break;
+                        case 3:
+                            winspots[i][j] = Colors.YELLOW + "MM" + Colors.RESET;
+                            break;
+                    }
                 }
             }
         }
@@ -45,8 +59,24 @@ public class Display {
                 positions[i][0] = "  ";
                 positions[i][1] = "  ";
             } else {
-                positions[i][0] = "P" + Spielfeld.getSpielfeld()[i][0];
-                positions[i][1] = "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]);
+                switch (Spielfeld.getSpielfeld()[i][0]) {
+                    case 0:
+                        positions[i][0] = Colors.BLUE + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
+                        positions[i][1] = Colors.BLUE + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
+                        break;
+                    case 1:
+                        positions[i][0] = Colors.GREEN + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
+                        positions[i][1] = Colors.GREEN + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
+                        break;
+                    case 2:
+                        positions[i][0] = Colors.RED + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
+                        positions[i][1] = Colors.RED + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
+                        break;
+                    case 3:
+                        positions[i][0] = Colors.YELLOW + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
+                        positions[i][1] = Colors.YELLOW + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
+                        break;
+                }
             }
         }
         //homespots
@@ -56,7 +86,20 @@ public class Display {
                 if (resthomespotanzahl < j + 1) {
                     homespots[i][j] = "    ";
                 } else {
-                    homespots[i][j] = "MMMM";
+                    switch (i) {
+                        case 0:
+                            homespots[i][j] = Colors.BLUE + "MMMM" + Colors.RESET;
+                            break;
+                        case 1:
+                            homespots[i][j] = Colors.GREEN + "MMMM" + Colors.RESET;
+                            break;
+                        case 2:
+                            homespots[i][j] = Colors.RED + "MMMM" + Colors.RESET;
+                            break;
+                        case 3:
+                            homespots[i][j] = Colors.YELLOW + "MMMM" + Colors.RESET;
+                            break;
+                    }
                 }
             }
         }
