@@ -43,10 +43,8 @@ public class Spieler {
                         w = new Wurfel().get(hack);
                         new PlayerOutput().rolled(w);
                         if (w == 6) {
-                            Figur neu = new Figur(Spielfeld.getStart(id - 1), figures.size());
-                            figures.add(neu);
-                            Spielfeld.setFeld(id, Spielfeld.getStart(id - 1), neu.getHash());
-
+                            figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
+                            Spielfeld.setFeld(id - 1, Spielfeld.getStart(id - 1), figures.get(getFigures().size() - 1).getHash());
                             i = 4;
                             move(true);
                         }
@@ -113,10 +111,7 @@ public class Spieler {
             w = new Wurfel().get(false);
             new PcOutput().rolled(getName(), getId(), w);
             if (!Spielfeld.setFeld(id, w, figures.get(figures.size() - 1).getHash())) {
-                int choosefigure = theIntelligence(w);
-                if (choosefigure == -1) {
-                    choosefigure = (int) (Math.random() * getFigures().size() - 1);
-                } //else nix!
+                int choosefigure = (int) (Math.random() * getFigures().size() - 1);
                 new PcOutput().moved(getName(), getId(), choosefigure);
                 Spielfeld.setFeld(id, w, getFigures().get(choosefigure).getHash());
             } else {
@@ -158,7 +153,7 @@ public class Spieler {
                 return i;
             }
         }
-        //System.out.println("da ist keine Figur mit dem Hash!")
+        //System.out.println("Error: Could not find the matching hash!");
         return -1;
     }
 
@@ -201,46 +196,46 @@ public class Spieler {
 
     }
 
-    /* boolean letsgoin(int p_w) {
-         switch (p_w) {
-             case 1:
-                 if (Spielfeld.getWinspot().get(id).get(0) == null) {
-                     Spielfeld.setWinspot(0, id);
-                     return true;
-                 }
-                 return false;
-             //check ob auf Slot 0 eine figur steht
-             case 2:
-                 if (Spielfeld.getWinspot().get(id).get(0) == null && Spielfeld.getWinspot().get(id).get(1) == null) {
-                     Spielfeld.setWinspot(1, id);
-                     return true;
-                 }
-                 return false;
-             //0 und 1 etwas liegt
-             case 3:
-                 for (int i = 0; i < 3; i++) {
-                     if (Spielfeld.getWinspot().get(id).get(0) != null) {
-                         return false;
-                     }
-                 }
-                 Spielfeld.setWinspot(2, id);
-                 return true;
-             //checkt ob 0-2 leer ist
-             case 4:
-                 for (int i = 0; i < 4; i++) {
-                     if (Spielfeld.getWinspot().get(id).get(0) != null) {
-                         return false;
-                     }
-                 }
-                 Spielfeld.setWinspot(3, id);
-                 return true;
-             //check ob alle leer sind
-             default:
-                 //wenn Wurfanzahl zu hoch um reinzukommen
-                 return false;
-         }
-     }
- */
+    boolean letsgoin(int p_w) {
+        switch (p_w) {
+            case 1:
+                if (Spielfeld.getWinspot().get(id).get(0) == null) {
+                    Spielfeld.setWinspot(0, id);
+                    return true;
+                }
+                return false;
+            //check ob auf Slot 0 eine figur steht
+            case 2:
+                if (Spielfeld.getWinspot().get(id).get(0) == null && Spielfeld.getWinspot().get(id).get(1) == null) {
+                    Spielfeld.setWinspot(1, id);
+                    return true;
+                }
+                return false;
+            //0 und 1 etwas liegt
+            case 3:
+                for (int i = 0; i < 3; i++) {
+                    if (Spielfeld.getWinspot().get(id).get(0) != null) {
+                        return false;
+                    }
+                }
+                Spielfeld.setWinspot(2, id);
+                return true;
+            //checkt ob 0-2 leer ist
+            case 4:
+                for (int i = 0; i < 4; i++) {
+                    if (Spielfeld.getWinspot().get(id).get(0) != null) {
+                        return false;
+                    }
+                }
+                Spielfeld.setWinspot(3, id);
+                return true;
+            //check ob alle leer sind
+            default:
+                //wenn Wurfanzahl zu hoch um reinzukommen
+                return false;
+        }
+    }
+
     private boolean askedHomeMove(ArrayList<int[]> p_choices) {
         new Display();
         int choice = new PlayerOutput().askhome(p_choices);
@@ -252,23 +247,5 @@ public class Spieler {
             new PlayerOutput().homemove(p_choices.get(choice)[0], p_choices.get(choice)[1]);
             return true;
         }
-    }
-
-    private int theIntelligence(int p_w) {
-
-        for (int i = 0; i < figures.size(); i++) {
-            int Feld = figures.get(i).getFeld() + p_w;
-            if (Feld >= 40) {
-                //ArrayOutOfBounds kannste vergessen
-                //Zeit wieder bei 0 Anzufangen
-                Feld = Feld - 39;
-            }
-            if (Spielfeld.getSpielfeld()[Feld][0] != id && Spielfeld.getSpielfeld()[Feld][0] != 0) {
-                System.out.println("Der PC sieht alles" + i);
-                return i;
-            }
-
-        }
-        return -1;
     }
 }
