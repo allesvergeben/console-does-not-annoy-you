@@ -60,19 +60,19 @@ public class Display {
                 positions[i][1] = "  ";
             } else {
                 switch (Spielfeld.getSpielfeld()[i][0]) {
-                    case 0:
+                    case 1:
                         positions[i][0] = Colors.BLUE + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
                         positions[i][1] = Colors.BLUE + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
                         break;
-                    case 1:
+                    case 2:
                         positions[i][0] = Colors.GREEN + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
                         positions[i][1] = Colors.GREEN + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
                         break;
-                    case 2:
+                    case 3:
                         positions[i][0] = Colors.RED + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
                         positions[i][1] = Colors.RED + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
                         break;
-                    case 3:
+                    case 4:
                         positions[i][0] = Colors.YELLOW + "P" + Spielfeld.getSpielfeld()[i][0] + Colors.RESET;
                         positions[i][1] = Colors.YELLOW + "F" + Spiel.getPlayer(Spielfeld.getSpielfeld()[i][0] - 1).getFigurIndexByHash(Spielfeld.getSpielfeld()[i][1]) + Colors.RESET;
                         break;
