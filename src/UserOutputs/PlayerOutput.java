@@ -1,5 +1,6 @@
 package UserOutputs;
 
+import Graphics.Colors;
 import UserInputs.IntInput;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class PlayerOutput {
     }
 
     public void turn(String p_name, int p_id) {
-        System.out.println(p_name + " (P" + p_id + ") ist jetzt dran.");
+        System.out.println(p_name + " " + Colors.color(p_id, "(P", ")") + " ist jetzt dran.");
     }
 
     public void out() {
@@ -26,7 +27,7 @@ public class PlayerOutput {
     }
 
     public void won(String p_player, int p_ID) {
-        System.out.println("Spieler " + p_player + "(ID: " + p_ID + ") hat gewonnen");
+        System.out.println("Spieler " + p_player + Colors.color(p_ID, "(ID: ", ")") + " hat " + Colors.GREEN + "gewonnen" + Colors.RESET);
     }
 
     public void blockedbyown() {
@@ -34,7 +35,7 @@ public class PlayerOutput {
     }
 
     public void kicked(String p_name, String p_namek, int p_id, int p_idk, int p_FigurID) {
-        System.out.println(p_name + " (ID: " + p_id + ") hat von " + p_namek + " (ID: " + p_idk + ") die Figur mit der ID " + p_FigurID + " rausgeworfen!");
+        System.out.println(p_name + Colors.color(p_id, " (ID: ", ")") + " hat von " + p_namek + " " + Colors.color(p_idk, "(ID: ", ")") + " die Figur mit der ID " + p_FigurID + " rausgeworfen!");
     }
 
     public void homemove(int p_from, int p_to) {

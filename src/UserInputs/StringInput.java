@@ -31,7 +31,8 @@ public class StringInput {
         //reset
         Spiel.setHack(false);
         Spiel.setPc(false);
-        if ("MOTHERLOAD".equals(p_input.toUpperCase())) {
+        //equals.ignor hatte mal wieder kein bock
+        if ("EL NINO".equals(p_input.toUpperCase())) {
             System.out.println("Ahja, da kann wohl einer nicht verlieren");
             Spiel.setHack(true);
         } else if ("PC".equals(p_input.toUpperCase())) {

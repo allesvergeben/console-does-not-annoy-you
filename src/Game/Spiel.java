@@ -37,8 +37,11 @@ public class Spiel {
             for (Spieler spieler : player) {
                 new PlayerOutput().turn(spieler.getName(), spieler.getId());
                 spieler.move(false);
-                if (spieler.getPc() && gameruns) {
+                if (spieler.getPc() && getGame()) {
                     new Display();
+                }
+                if (!getGame()) {
+                    break;
                 }
             }
         }
@@ -51,6 +54,10 @@ public class Spiel {
 
     static void stopGame() {
         gameruns = false;
+    }
+
+    private static boolean getGame() {
+        return gameruns;
     }
 
     private static void setPlayers(ArrayList<Spieler> p_spieler) {
