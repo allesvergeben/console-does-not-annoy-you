@@ -17,10 +17,6 @@ class Figur {
         return Feld;
     }
 
-    int getId() {
-        return this.id;
-    }
-
     void setFeld(int p_Feld) {
         this.Feld = p_Feld;
     }
@@ -33,8 +29,8 @@ class Figur {
         return round;
     }
 
-    void setRound(boolean p_round) {
-        this.round = p_round;
+    void setRound() {
+        this.round = true;
     }
 
     @Override

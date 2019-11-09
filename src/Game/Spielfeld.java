@@ -42,7 +42,7 @@ public class Spielfeld extends Spiel {
         }
         if (Feld >= 40) {
             Feld = Feld - 39;
-            getPlayer(p_Spieler - 1).getFigurByHash(p_FigurHash).setRound(true);
+            getPlayer(p_Spieler - 1).getFigurByHash(p_FigurHash).setRound();
         }
         if (!gohome(p_Spieler - 1, p_FigurHash, Feld)) {
             //vorher checken ob sie nicht in den Winspot kommt
