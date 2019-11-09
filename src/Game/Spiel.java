@@ -57,10 +57,6 @@ public class Spiel {
         player = p_spieler;
     }
 
-    static String getStaticNameById(int p_id) {
-        return player.get(p_id).getName();
-    }
-
     public static Spieler getPlayer(int p_index) {
         return player.get(p_index);
     }

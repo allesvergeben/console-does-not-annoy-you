@@ -37,7 +37,7 @@ public class Spielfeld extends Spiel {
         try {
             Feld = p_Wurf + getPlayer(p_Spieler - 1).getFigurByHash(p_FigurHash).getFeld();
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            //Sollte nicht mehr auftreten…
+            //NÖTIG FÜR DEN WINSPOT WALK MERGE
             return false;
         }
         if (Feld >= 40) {
@@ -48,10 +48,11 @@ public class Spielfeld extends Spiel {
         //vorher checken ob sie nicht in den Winspot kommt
     }
 
-
     private static void switchFig(int p_Spieler, int p_FigurHash, int p_Feld) {
         //Altes Feld leeren
+        System.out.println("Size: " + getPlayer(p_Spieler).getFigures().size());
         int i = getPlayer(p_Spieler).getFigurByHash(p_FigurHash).getFeld();
+
         Spielfeld[getPlayer(p_Spieler).getFigurByHash(p_FigurHash).getFeld()][0] = 0;
         Spielfeld[getPlayer(p_Spieler).getFigurByHash(p_FigurHash).getFeld()][1] = 0;
         //Figur Feld Aktualisieren

@@ -18,7 +18,9 @@ public class StringInput {
     private void set(String p_input, int p_length) {
         checkCommand(p_input);
         if (p_length <= p_input.length()) {
+            //ausgabe
             System.out.println("Die Eingabe darf nur maximal " + p_length + " Zeichen haben.\n Deine Eingabe hatte " + p_input.length() + " Zeichen!");
+            //nochmal fragen
             set(inputScanner.nextLine(), p_length);
         } else {
             userInputString = p_input;

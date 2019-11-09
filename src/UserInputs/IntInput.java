@@ -18,6 +18,7 @@ public class IntInput {
         try {
             //Versucht die Eingabe von einem String zu einem int zu "parsen"
             p_validate_int = Integer.parseInt(p_validate);
+            //checkt ob die Zahl
             if (p_validate_int >= p_von && p_validate_int <= p_bis) {
                 return p_validate_int;
             } else {

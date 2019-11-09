@@ -32,6 +32,7 @@ public class Spieler {
             int w;
             if (p_gotout) {
                 w = new Wurfel().get(hack);
+                System.out.println("würfelt: " + w);
                 if (!Spielfeld.setFeld(id, w, figures.get(figures.size() - 1).getHash())) {
                     askedmove(w);
                 } else {
@@ -43,8 +44,10 @@ public class Spieler {
                         w = new Wurfel().get(hack);
                         new PlayerOutput().rolled(w);
                         if (w == 6) {
-                            figures.add(new Figur(Spielfeld.getStart(id - 1), figures.size()));
-                            Spielfeld.setFeld(id - 1, Spielfeld.getStart(id - 1), figures.get(getFigures().size() - 1).getHash());
+                            Figur neu = new Figur(Spielfeld.getStart(id - 1), figures.size());
+                            figures.add(neu);
+                            Spielfeld.setFeld(id, Spielfeld.getStart(id - 1), neu.getHash());
+
                             i = 4;
                             move(true);
                         }
@@ -247,5 +250,14 @@ public class Spieler {
             new PlayerOutput().homemove(p_choices.get(choice)[0], p_choices.get(choice)[1]);
             return true;
         }
+    }
+
+    private int theIntelligence(int p_w) {
+        for (int i = 0; i < figures.size(); i++) {
+            if (Spielfeld.getSpielfeld()[figures.get(i).getFeld() + p_w][0] != id && Spielfeld.getSpielfeld()[figures.get(i).getFeld() + p_w][0] != 0) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

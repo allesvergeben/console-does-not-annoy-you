@@ -43,6 +43,6 @@ class Figur {
         result = 31 * result + (Math.random() * 9 + "" + Math.random() * 9).hashCode();
         result = 31 * result + (Math.random() * 9 + "" + Math.random() * 9).hashCode();
         return result;
+        //bsp. 1820491084091284012
     }
-
 }

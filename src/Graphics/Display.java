@@ -10,7 +10,6 @@ public class Display {
     private String[][] winspots = new String[4][4];
 
     public Display() {
-        Colors C = new Colors();
         setPositions();
         setOutput();
         print();
