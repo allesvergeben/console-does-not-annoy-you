@@ -157,7 +157,7 @@ public class Spieler {
         return -1;
     }
 
-    boolean checkInHomeWalk(int p_w) {
+    private boolean checkInHomeWalk(int p_w) {
         if (Spielfeld.getWinspot().get(id).size() > 0) {
             ArrayList<int[]> choices = new ArrayList<>();
             switch (p_w) {
