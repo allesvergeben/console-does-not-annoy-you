@@ -44,4 +44,5 @@ public class PlayerOutput {
     public int askhome(ArrayList<int[]> p_choices) {
         return new IntInput("Willst du vieleicht deine Zielpositionen etwas aufräumen?\n Wenn nicht, geb einfach -1 ein ;-)", -1, p_choices.size()).get();
     }
+    //
 }
