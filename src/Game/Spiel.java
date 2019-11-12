@@ -27,6 +27,7 @@ public class Spiel {
         ArrayList<Spieler> Spieler = new ArrayList<>();
         playercount = new IntInput("Zu wie vielt soll gespielt werden", 2, 4).get();
         for (int i = 1; i <= playercount; i++) {
+            //huch
             Spieler.add(new Spieler(new StringInput("Bitte gib den Name des " + i + ". Spielers an.", 15).get(), i, hack, pc));
         }
         setPlayers(Spieler);
