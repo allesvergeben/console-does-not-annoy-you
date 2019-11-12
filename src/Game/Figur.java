@@ -17,10 +17,6 @@ class Figur {
         return Feld;
     }
 
-    int getId() {
-        return this.id;
-    }
-
     void setFeld(int p_Feld) {
         this.Feld = p_Feld;
     }
